@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recruitment-task-angular';
+  userName: string = ""
+  searchDisabled: boolean = false
+
+  onPassSearch(value: string): void {
+    this.userName = value
+  }
+  onSearchDisabled(value: boolean): void {
+    this.searchDisabled = value
+  }
+
 }
+
+
+
