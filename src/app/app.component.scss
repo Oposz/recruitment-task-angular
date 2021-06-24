@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap");
+* {
+  font-family: Roboto;
+  box-sizing: border-box;
+
+}
+body {
+  margin: 0;
+}
+@media (max-width:1199px){
+  body{
+    visibility:hidden;
+  }
+}

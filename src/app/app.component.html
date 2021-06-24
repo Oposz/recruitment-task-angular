@@ -3,6 +3,9 @@
 [searchDisabled]="searchDisabled"
 ></app-header>
 <app-repos-list
-[userName]="userName"
+[repos]="repos"
+[isSearchDisabled]="isSearchDisabled"
+[isLoading]="isLoading"
+[error]="error"
 (searchDisabled)="onSearchDisabled($event)"
 ></app-repos-list>
