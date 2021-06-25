@@ -25,6 +25,7 @@ export class AppComponent implements OnDestroy {
     if (value !== this.currentUser) {
       this.isSearchDisabled = true;
       this.isLoading = true;
+      this.error="";
       this.sub = this.http.get<Repo[]>(`${environment.githubApi}/users/${value}/repos`).subscribe((data) => {
         this.processedRepos(data);
         this.currentUser = value;
@@ -43,6 +44,7 @@ export class AppComponent implements OnDestroy {
 
   handleError(error:any){
     this.isLoading=false;
+
     this.searchDisabled=false;
     if(error.status===404){
       this.error="Nie ma takiego użytkownika."

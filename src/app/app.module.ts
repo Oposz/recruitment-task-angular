@@ -10,9 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ReposListComponent } from './repos/repos-list/repos-list.component';
-import { ScrollbarComponent } from './shared/scrollbar/scrollbar.component';
 import { RepoComponent } from './repos/repo/repo.component';
-
+import { NgScrollbarModule } from 'ngx-scrollbar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +19,6 @@ import { RepoComponent } from './repos/repo/repo.component';
     HeaderComponent,
     SearchBarComponent,
     ReposListComponent,
-    ScrollbarComponent,
     RepoComponent
   ],
   imports: [
@@ -28,7 +26,8 @@ import { RepoComponent } from './repos/repo/repo.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgScrollbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
