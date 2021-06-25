@@ -13,6 +13,7 @@ export class ReposListComponent implements OnInit, OnChanges {
   @Input() isSearchDisabled: boolean;
   @Input() error: string;
   @Input() isLoading: boolean;
+  @Input() userName: string;
   @Output() searchDisabled = new EventEmitter<boolean>();
 
   constructor() { }
@@ -20,7 +21,7 @@ export class ReposListComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
   ngOnChanges(): void {
-    console.log(this.isLoading)
+
   }
   onSearchDisabled(): void {
     this.searchDisabled.emit(this.isSearchDisabled)

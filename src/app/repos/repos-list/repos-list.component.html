@@ -13,7 +13,7 @@
           [repo]="repo"
           ></app-repo>
         </div>
-      <h1 class="repos-list__comunicat" *ngIf="repos.length===0">
+      <h1 class="repos-list__comunicat" *ngIf="repos.length===0 && userName">
         Użytkownik nie ma żadnego repo.
       </h1>
     </ng-container>

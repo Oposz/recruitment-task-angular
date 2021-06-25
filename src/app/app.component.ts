@@ -11,7 +11,6 @@ import { Repo } from './shared/interfaces/repo.interface';
 })
 export class AppComponent implements OnDestroy {
   title = 'recruitment-task-angular';
-  userName: string = '';
   searchDisabled: boolean = false;
   repos: Repo[] = [];
   currentUser: string = '';
@@ -22,16 +21,35 @@ export class AppComponent implements OnDestroy {
 
   constructor(private readonly http: HttpClient) { }
 
-   onPassSearch(value: string){
-    this.sub=this.http.get<Repo[]>(`${environment.githubApi}/users/${value}/repos`).subscribe((data)=>{
-      this.repos=data.sort((a:Repo, b:Repo) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()).reverse();
-    },
-    (error)=>{
-      console.log(error);
-    })
+  onPassSearch(value: string) {
+    if (value !== this.currentUser) {
+      this.isSearchDisabled = true;
+      this.isLoading = true;
+      this.sub = this.http.get<Repo[]>(`${environment.githubApi}/users/${value}/repos`).subscribe((data) => {
+        this.processedRepos(data);
+        this.currentUser = value;
+      },
+      (error) => {
+        this.handleError(error)
+      })
+    }
   }
 
+  processedRepos(repos: Repo[]) {
+    this.repos = repos.sort((a: Repo, b: Repo) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()).reverse();
+    this.isLoading = false;
+    this.isSearchDisabled = false;
+  }
 
+  handleError(error:any){
+    this.isLoading=false;
+    this.searchDisabled=false;
+    if(error.status===404){
+      this.error="Nie ma takiego użytkownika."
+    }else if(error.status>=500){
+      this.error="Coś poszło nie tak ;("
+    }
+  }
   onSearchDisabled(value: boolean): void {
     this.searchDisabled = value
   }
