@@ -23,12 +23,12 @@ export class AppComponent implements OnDestroy {
 
   onPassSearch(value: string) {
     if (value !== this.currentUser) {
-      this.isSearchDisabled = true;
       this.isLoading = true;
+      this.currentUser = value;
+      this.isSearchDisabled = true;
       this.error="";
       this.sub = this.http.get<Repo[]>(`${environment.githubApi}/users/${value}/repos`).subscribe((data) => {
         this.processedRepos(data);
-        this.currentUser = value;
       },
       (error) => {
         this.handleError(error)
