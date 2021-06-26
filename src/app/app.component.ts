@@ -22,6 +22,7 @@ export class AppComponent implements OnDestroy {
   constructor(private readonly http: HttpClient) { }
 
   onPassSearch(value: string) {
+    if (this.isLoading) return
     if (value !== this.currentUser) {
       this.isLoading = true;
       this.currentUser = value;
